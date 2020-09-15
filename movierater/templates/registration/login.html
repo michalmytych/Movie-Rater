@@ -1,0 +1,16 @@
+{% extends 'base.html'%}
+{% load bootstrap %}
+
+{% block page_title %}Logowanie{% endblock %}
+{% block page_content %}
+
+  <h2>Logowanie do MovieRater</h2>
+
+  <form style="margin-top: 2rem" method="post">
+        {% csrf_token %}
+        {{ form|bootstrap }}
+        <button type="submit" class="btn btn-success">Zaloguj <i class="fas fa-sign-in-alt"></i></button>
+        <a href="/movies/all" class="btn btn-primary">Wróć <i class="fas fa-arrow-left"></i></a>
+  </form>
+
+{% endblock %}
