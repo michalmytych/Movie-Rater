@@ -1,0 +1,48 @@
+{% extends 'base.html'%}
+{% block page_title %}Wszystkie filmy{% endblock %}
+{% block page_content %}
+
+<nav style="text-align: right;" class="container page-header">
+    {% if user.is_authenticated %}
+        <a class="btn btn-danger" href="{% url 'logout' %}" >Wyloguj się <i class="fas fa-sign-out-alt"></i></a>
+    {% else %}
+        <a class="btn btn-primary" href="{% url 'login' %}" >Zaloguj się <i class="fas fa-sign-in-alt"></i></a>
+    {% endif %}
+</nav>
+
+  <h2><i class="fas fa-film"></i>  Moje filmy:</h2>
+    <p>Ilość filmów: {{ movies_amount }}</p>
+
+    <a href="/movies/new"> <i class="fas fa-plus"></i> Dodaj nowy film</a>
+
+    {% for movie in movies %}
+    
+<div style="padding-top: 2rem;" class="container">
+  <div class="row">
+    <div class="col-3">
+      <img class="poster text-right" src="/media/{{movie.poster}}" alt="Obraz - plakat filmu {{ movie.title }}">
+    </div>
+
+    <div class="col-9">
+      <div class="card">
+      <div class="card-body">
+      <h4 class="card-title">{{ movie.title }}</h4>
+        
+        <p class="card-subtitle mb-2 text-muted">{{ movie.year }} </p>
+        <p class="card-text"> {{ movie.description }} </p>
+
+        <a class="card-link" href="/movies/edit/{{movie.id}}"><i class="fas fa-edit"></i> Edytuj</a>
+        <a class="card-link" href="/movies/delete/{{movie.id}}"><i class="fas fa-trash-alt"></i> Usuń</a>
+      </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+    {% endfor %}
+
+    {% if movies|length == 0 %}
+    <h2>Brak filmow</h2>
+    {% endif %}
+
+{% endblock %}

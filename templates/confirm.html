@@ -1,0 +1,13 @@
+{% extends 'base.html'%}
+{% block page_title %}Edycja filmu{% endblock %}
+{% block page_content %}
+
+  <h2 style="margin-top: 2rem">Czy napewno chcesz usunąć film "{{selected_movie.title}}"?</h2>
+
+  <form style="margin-top: 2rem" method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Potwierdź</button>
+        <a href="/movies/all" class="btn btn-primary">Wróć <i class="fas fa-arrow-left"></i></a>
+  </form>
+
+{% endblock %}
