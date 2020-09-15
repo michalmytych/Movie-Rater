@@ -137,4 +137,9 @@ notatki.txt
 # my venv
 venv/
 
+# db
+*.sqlite
+*.sqlite3
+db.sqlite3
+
 
