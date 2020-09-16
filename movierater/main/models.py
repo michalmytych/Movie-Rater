@@ -33,7 +33,7 @@ class ExtraInfo(models.Model):
     genre = models.PositiveSmallIntegerField(default=0, choices=GENRES)
 
     def __str__(self):
-        return 'Movie object of genre: ' + self.genre + ' and duration of ' + str(self.duration) + ' minutes.'
+        return 'Movie object of genre: ' + str(self.genre) + ' and duration of ' + str(self.duration) + ' minutes.'
 
 
 class Review(models.Model):
