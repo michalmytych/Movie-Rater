@@ -2,6 +2,9 @@ from django.db import models
 
 
 class Movie(models.Model):
+    class Meta:
+        db_table = 'core_movies'
+
     year = models.PositiveSmallIntegerField(default=2000, blank=True)
     title = models.CharField(max_length=64, blank=False)
     description = models.TextField(max_length=200, default="")
@@ -30,6 +33,9 @@ class Movie(models.Model):
 
 
 class ExtraInfo(models.Model):
+    class Meta:
+        db_table = 'core_extra_infos'
+
     GENRES = [
         (0, 'Wojenny'),
         (1, 'Dramat obyczajowy'),
@@ -49,6 +55,9 @@ class ExtraInfo(models.Model):
 
 
 class Review(models.Model):
+    class Meta:
+        db_table = 'core_reviews'
+
     text_review = models.TextField(default='Brak recenzji.')
     stars = models.PositiveSmallIntegerField(default=3)
     movie = models.ForeignKey("Movie", on_delete=models.CASCADE)
@@ -58,6 +67,9 @@ class Review(models.Model):
 
 
 class Actor(models.Model):
+    class Meta:
+        db_table = 'core_actors'
+
     first_name = models.CharField(max_length=64)
     last_name = models.CharField(max_length=64)
     movies = models.ManyToManyField("Movie")
