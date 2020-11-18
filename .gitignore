@@ -144,7 +144,11 @@ env/
 *.sqlite3
 db.sqlite3
 
-# Django secret key & other protected data
+# Django secret key
 secrets.py
-
-
+# Django secret key
+secrets.py
+# Django secret key
+secrets.py
+# Django secret key
+secrets.py
