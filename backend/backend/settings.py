@@ -1,6 +1,7 @@
 from pathlib import Path
 
-from backend import secrets
+from backend.scripts import secrets
+from backend.scripts import production_db_config
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,7 +24,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'bootstrapform',
-    'core',
+    'core'
 ]
 
 MIDDLEWARE = [
@@ -41,7 +42,7 @@ ROOT_URLCONF = 'backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': ['backend/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -57,9 +58,19 @@ TEMPLATES = [
 WSGI_APPLICATION = 'backend.wsgi.application'
 
 DATABASES = {
+    # Default database for development
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / 'dev_db.sqlite3',
+    }
+
+    # Default database for production
+    'production': {
+        'ENGINE': production_db_config.DB_ENGINE,
+        'NAME': production_db_config.DB_NAME,
+        'USER': production_db_config.DB_USER,
+        'PASSWORD': production_db_config.DB_PASSWORD,
+        'HOST': production_db_config.HOST_NAME,
     }
 }
 
