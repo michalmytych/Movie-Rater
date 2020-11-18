@@ -1,5 +1,12 @@
 from django.urls import path
-from main.views import all_movies, add_movie, edit_movie, delete_movie
+
+from core.views import (
+    all_movies, 
+    add_movie, 
+    edit_movie, 
+    delete_movie
+)
+
 
 urlpatterns = [
     path('all/', all_movies, name="all"),

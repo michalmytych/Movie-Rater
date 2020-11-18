@@ -136,10 +136,15 @@ notatki.txt
 
 # my venv
 venv/
+/venv
+env/
 
 # db
 *.sqlite
 *.sqlite3
 db.sqlite3
+
+# Django secret key & other protected data
+secrets.py
 
 

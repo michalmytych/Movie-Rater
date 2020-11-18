@@ -1,9 +1,14 @@
 from pathlib import Path
 
+from backend import secrets
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = '4*j^g6p428^dbf3y55we$s5=r=)&_f53g#r(5#8#@c$_unlth^'
+if secrets.DJANGO_SECRET_KEY:
+    SECRET_KEY = secrets.DJANGO_SECRET_KEY
+else:
+    print("DJANGO_SECRET_KEY not provided in backend.secrets. This will cause problems further on.")
 
 DEBUG = True
 
@@ -18,7 +23,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'bootstrapform',
-    'main',
+    'core',
 ]
 
 MIDDLEWARE = [
@@ -31,7 +36,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'movierater.urls'
+ROOT_URLCONF = 'backend.urls'
 
 TEMPLATES = [
     {
@@ -49,7 +54,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'movierater.wsgi.application'
+WSGI_APPLICATION = 'backend.wsgi.application'
 
 DATABASES = {
     'default': {

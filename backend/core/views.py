@@ -1,25 +1,12 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
+
 from .models import Movie, ExtraInfo, Review
 from .forms import MovieForm, ExtraInfoForm, ReviewForm
-from django.contrib.auth.decorators import login_required
-from rest_framework import viewsets
-from .serializers import UserSerializer, User, MovieSerializer
-
-
-class UserView(viewsets.ModelViewSet):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-
-
-class MovieView(viewsets.ModelViewSet):
-    queryset = Movie.objects.all()
-    serializer_class = MovieSerializer
 
 
 def all_movies(request):
-
     movies = Movie.objects.all()
-
     movies_amount = len(movies)
 
     return render(request, 'all_movies.html',

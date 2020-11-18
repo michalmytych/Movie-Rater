@@ -7,11 +7,23 @@ class Movie(models.Model):
     description = models.TextField(max_length=200, default="")
     imdb_link = models.URLField(null=True)
     imdb_rating = models.DecimalField(
-        max_digits=4, decimal_places=2, null=True, blank=True)
+        max_digits=4, 
+        decimal_places=2, 
+        null=True, 
+        blank=True
+    )
     premiere = models.DateField(null=True, blank=True)
-    poster = models.ImageField(upload_to="posters", null=True, blank=True)
+    poster = models.ImageField(
+        upload_to="posters", 
+        null=True, 
+        blank=True
+    )
     extra_info = models.OneToOneField(
-        "ExtraInfo", on_delete=models.CASCADE, null=True, blank=True)
+        "ExtraInfo", 
+        on_delete=models.CASCADE, 
+        null=True, 
+        blank=True
+    )
 
     def __str__(self):
         return self.title + ' (' + str(self.year) + ') '
